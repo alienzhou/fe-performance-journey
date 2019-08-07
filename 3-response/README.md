@@ -7,7 +7,13 @@
 
 所以这里只会提一些实践中碰到的小点，再辅以一些拓展阅读，希望能帮助大家开拓思维。
 
-## 业务聚合
+## 1. 使用流进行响应
+
+目前，现代浏览器都支持根据不断返回的流内容逐步进行页面的解析与处理。这就意味着，即使请求的响应没有完全结束，浏览器也可以从手里已有的响应结果中解析并渲染出页面。
+
+例如 [css-only-chat-node](https://github.com/alienzhou/css-only-chat-node) 就利用了这个特点来实现无刷新、无 JavaScript 的页面更新。
+
+## 2. 业务聚合
 
 BFF 非常合适做的一件事就是服务聚合。
 
@@ -17,7 +23,7 @@ BFF 非常合适做的一件事就是服务聚合。
 
 好了，你可能会问，为什么不能让那些后端工程师们帮你修改或新开一个接口呢？毕竟有时候，如果需求的产出方和实现方是一个人的话，会更顺畅，有种心手合一的感觉。
 
-## 代码问题
+## 3. 避免代码问题
 
 代码问题其实有点过细了。列举一些常见的问题吧。
 
@@ -36,6 +42,6 @@ BFF 非常合适做的一件事就是服务聚合。
 
 ## 拓展阅读
 
-- [你不知道的 Node.js 性能优化](https://www.yuque.com/office/yuque/0/2019/pdf/168578/1547529466557-357032b6-12fb-4e02-9682-076f498c1f42.pdf)
-- [Keeping Node.js Fast: Tools, Techniques, And Tips For Making High-Performance Node.js Servers](https://www.smashingmagazine.com/2018/06/nodejs-tools-techniques-performance-servers/?utm_source=mybridge&utm_medium=blog&utm_campaign=read_more)
-- [Backend-in-the-frontend: a pattern for cleaner code](https://hackernoon.com/frontend-in-the-backend-a-pattern-for-cleaner-code-b497c92d0b49)
+1. [你不知道的 Node.js 性能优化](https://www.yuque.com/office/yuque/0/2019/pdf/168578/1547529466557-357032b6-12fb-4e02-9682-076f498c1f42.pdf)
+1. [Keeping Node.js Fast: Tools, Techniques, And Tips For Making High-Performance Node.js Servers](https://www.smashingmagazine.com/2018/06/nodejs-tools-techniques-performance-servers/?utm_source=mybridge&utm_medium=blog&utm_campaign=read_more)
+1. [Backend-in-the-frontend: a pattern for cleaner code](https://hackernoon.com/frontend-in-the-backend-a-pattern-for-cleaner-code-b497c92d0b49)
