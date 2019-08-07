@@ -148,3 +148,4 @@ Push Cache 其实是 HTTP/2 的 Push 功能所带来的。简单来说，过去�
 1. [The Offline Cookbook (Service Worker)](https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/)
 1. [HTTP/2 ORG](https://http2.github.io/)
 1. [Web Caching Explained by Buying Milk at the Supermarket](https://dev.to/kbk0125/web-caching-explained-by-buying-milk-at-the-supermarket-9k4?utm_source=mybridge&utm_medium=blog&utm_campaign=read_more)
+1. [深入理解浏览器的缓存机制](https://mp.weixin.qq.com/s/y-yajw1GaWLKUdOJo3cbew)
