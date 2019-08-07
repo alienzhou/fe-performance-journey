@@ -56,7 +56,7 @@ HTML 解析为 DOM Tree，CSS 解析为 CSSOM，两者再合成 Render Tree，�
 
 可见，defer 会在 HTML 解析完成后，按照脚本出现的次序再顺序执行；而 async 则是下完完成就立即开始执行，同时阻塞页面解析，不保证简本间的执行顺序。
 
-根据它们的特点，非常推荐在一些与主业务无关的 JavaScript 脚本上使用 async。例如统计脚本、监控脚本、广告脚本等。这些脚本一般都是一份独立的文件，没有外部依赖，同时也不需要有严格的执行时机限制。这样使用可以有效避免这些非核心功能的加载影响页面解析速度。
+根据它们的特点，非常推荐在一些与主业务无关的 JavaScript 脚本上使用 async。例如统计脚本、监控脚本、广告脚本等。这些脚本一般都是一份独立的文件，没有外部依赖，不需要访问 DOM，同时也不需要有严格的执行时机限制。这样使用可以有效避免这些非核心功能的加载影响页面解析速度。
 
 ---
 
@@ -82,4 +82,6 @@ HTML 解析为 DOM Tree，CSS 解析为 CSSOM，两者再合成 Render Tree，�
 
 1. [Deciphering the Critical Rendering Path](https://calendar.perfplanet.com/2012/deciphering-the-critical-rendering-path/)
 1. [HTML5 spec: current-document-readiness](https://html.spec.whatwg.org/multipage/dom.html#current-document-readiness)
+1. [Async Defer — JavaScript Loading Strategies](https://medium.com/@raviroshan.talk/async-defer-javascript-loading-strategies-da489a0ba47e)
+1. [Speed up Google Maps(and everything else) with async & defer](https://medium.com/@nikjohn/speed-up-google-maps-and-everything-else-with-async-defer-7b9814efb2b)
 1. [HTML5 spec: parse HTML (the end)](https://html.spec.whatwg.org/multipage/parsing.html#the-end)
