@@ -38,17 +38,42 @@ DNS 本身是一个树状结构，所以 DNS 解析会是一个递归与迭代�
 - 首先 DNS 解析流程是可能会很长、耗时很高，所以整个 DNS 服务，包括客户端都会有缓存机制，这个作为前端不好涉入；
 - 其次，在 DNS 解析上，前端还是可以通过浏览器提供的其他手段来“加速”的。
 
-DNS Prefetch 就是浏览器提供给我们的一个 API。它是 Resource Hint 的一部分。它可以告诉浏览器：过会我就可能要去 xxx.yyy.com 上下载一个资源啦，帮我先解析一下域名吧。这样之后用户点击某个按钮，触发了 xxx.yyy.com 域名下的远程请求时，就略去了 DNS 解析的步骤。使用方式很简单：
+DNS Prefetch 就是浏览器提供给我们的一个 API。它是 Resource Hint 的一部分。它可以告诉浏览器：过会我就可能要去 yourwebsite.com 上下载一个资源啦，帮我先解析一下域名吧。这样之后用户点击某个按钮，触发了 yourwebsite.com 域名下的远程请求时，就略去了 DNS 解析的步骤。使用方式很简单：
 
 ```HTML
-<link rel="dns-prefetch" href="//xxx.yyy.com">
+<link rel="dns-prefetch" href="//yourwebsite.com">
 ```
 
 当然，浏览器并不完全保证一定会去解析域名，可能会根据当前的网络请求、负载等状态做决定。标准里也明确写了
 
 > user agent SHOULD resolve as early as possible
 
-## 3. CDN
+## 3. 预先建立连接
+
+我们知道，建立连接不仅需要DNS查询，还需要进行TCP协议握手，有些还会有TLS/SSL协议，这些都会导致连接的耗时。因此，使用Preconnect可以帮助你告诉浏览器：“我有一些资源会用到某个源，可以帮我预先建立连接。”
+
+根据规范，当你使用 PreConnect 时，浏览器大致做了如下处理：
+
+- 首先，解析 PreConnect 的URL
+- 其次，根据当前link元素中的属性进行cors的设置
+- 默认先将credential设为true；如果cors为Anonymous并且存在跨域，则将credential置为false
+- 最后进行连接
+
+使用 PreConnect 只需要将 rel 属性设为 `preconnect` 即可：
+
+```HTML
+<link rel="preconnect" href="//yourwebsite.com">
+```
+
+当然，你也可以设置CORS
+
+```HTML
+<link rel="preconnect" href="//yourwebsite.com" crossorigin>
+```
+
+需要注意的是，标准并没有硬性规定浏览器一定要（而是SHOULD）完成整个连接过程，浏览器可以视情况完成部分工作。
+
+## 4. CDN
 
 > 使用 CDN 加速静态资源。
 
