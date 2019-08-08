@@ -16,10 +16,10 @@
 
 ```JavaScript
 btn.addEventListener('click', function(e) {
-    // 在这里加载chat组件相关资源 chat.js
-    var ele = document.createElement('script');
-    ele.setAttribute('src','/static/chat.js');
-    document.getElementsByTagName('head')[0].appendChild(ele);
+    // 在这里加载 chat 组件相关资源 chat.js
+    var script = document.createElement('script');
+    script.src = '/static/chat.js';
+    document.getElementsByTagName('head')[0].appendChild(script);
 });
 ```
 
@@ -53,7 +53,7 @@ btn.addEventListener('click', function(e) {
 
 ![压缩效果](./img/gzip2.png)
 
-深色的数字表示压缩后的大小为 22.0KB，浅色部分表示压缩前的大小为 91.9KB。可见压缩比还是挺大的，非常有效果。一般服务器都会内置有相应模块来进行 gzip 处理，不需要单独便写压缩算法模块。例如在 Nginx 中就包含了 [ngx_http_gzip_module](http://nginx.org/en/docs/http/ngx_http_gzip_module.html) 模块，通过简单的配置就可以开启。
+深色的数字表示压缩后的大小为 22.0KB，浅色部分表示压缩前的大小为 91.9KB。可见压缩比还是挺大的，非常有效果。一般服务器都会内置有相应模块来进行 gzip 处理，不需要单独便写压缩算法模块。例如在 Nginx 中就包含了 [ngx_http_gzip_module](http://nginx.org/en/docs/http/ngx_http_gzip_module.html)<sup>[3]</sup> 模块，通过简单的配置就可以开启。
 
 ```nginx
 gzip            on;
@@ -85,11 +85,11 @@ console.log(add(1, 2));
 
 可以看到，模块 B 引用了模块 A，但是只使用了 `add` 方法，而 `minus` 方法变为了 Dead Code，将它打包进去没有意义，因为永远不会使用。
 
-注意，我在上面的代码中使用了 ESM 规范的模块语法，而没有使用 CommonJS。这主要是由于 Tree Shaking 算是一种静态分析，而 ESM 本身是一种的静态模块化规范，所有依赖可以在编译期确定。如果想要更好得在 Webpack 中使用，可以在查看其[官网上的这部分内容](https://webpack.js.org/guides/tree-shaking/)。关于 Tree Shaking 的介绍可以[从这里了解下](https://juejin.im/post/5a4dc842518825698e7279a9)。
+注意，我在上面的代码中使用了 ESM 规范的模块语法，而没有使用 CommonJS。这主要是由于 Tree Shaking 算是一种静态分析，而 ESM 本身是一种的静态模块化规范，所有依赖可以在编译期确定。如果想要更好得在 Webpack 中使用，可以在查看其[官网上的这部分内容](https://webpack.js.org/guides/tree-shaking/)<sup>[4]</sup>。关于 Tree Shaking 的介绍可以[从这里了解下](https://juejin.im/post/5a4dc842518825698e7279a9)<sup>[5]</sup>。
 
-注意，刚才说了 Tree Shaking 非常依赖与 ESM，像是前端流行的工具库 [lodash](https://lodash.com/) 一般直接安装的版本是非 ESM 的，为了支持 Tree Shaking，我们一般会安装它的 ESM 版本 —— [lodash-es](https://www.npmjs.com/package/lodash-es) 来[实现 Tree Shaking](https://www.zhihu.com/question/333421533/answer/764963886)。
+注意，刚才说了 Tree Shaking 非常依赖与 ESM，像是前端流行的工具库 [lodash](https://lodash.com/) 一般直接安装的版本是非 ESM 的，为了支持 Tree Shaking，我们一般会安装它的 ESM 版本 —— [lodash-es](https://www.npmjs.com/package/lodash-es) 来[实现 Tree Shaking](https://www.zhihu.com/question/333421533/answer/764963886)<sup>[6]</sup>。
 
-此外，Chrome Dev Tools 也可以帮助你查看加载的 [JavaScript 代码的使用覆盖率](https://developers.google.com/web/updates/2017/04/devtools-release-notes?hl=zh-cn#coverage)。
+此外，Chrome Dev Tools 也可以帮助你查看加载的 [JavaScript 代码的使用覆盖率](https://developers.google.com/web/updates/2017/04/devtools-release-notes#coverage)<sup>[7]</sup>。
 
 ### 2.3. 优化 polyfill 的使用
 
@@ -99,7 +99,7 @@ console.log(add(1, 2));
 
 首先，不是每个业务的兼容性要求都一样。因此，按你业务的场景来确定引入哪些 polyfill 是最合适的。然而，特性千千万，手动 import 或者添加 Babel Transformer 显然是一件成本极高的事。针对这点，我们可以通过 Browserslist 来帮忙，许多前端工具（babel-preset-env/autoprefixer）都依赖于它。使用方式可以[看这里](https://babeljs.io/docs/en/next/babel-preset-env.html)。
 
-其次，在 Chrome Dev Summit 2018 上还介绍了一种 [Differential Serving](https://youtu.be/reztLS3vomE?t=1254) 的技术，通过浏览器原生模块化 API 来尽量避免加载无用 polyfill。
+其次，在 Chrome Dev Summit 2018 上还介绍了一种 [Differential Serving](https://youtu.be/reztLS3vomE?t=1254)<sup>[8]</sup> 的技术，通过浏览器原生模块化 API 来尽量避免加载无用 polyfill。
 
 ```HTML
 <script type="module" src="main.mjs"></script>
@@ -116,7 +116,7 @@ Webpack 现在已经成为很多应用的构建工具，因此这里单独将其
 
 ![webpack-bundle-analyzer](./img/webpack-bundle-analyzer.gif)
 
-导致打包体积过多的大部分问题都是来自于引入了不合适的包，对于如何优化依赖包的引入，这里有一些[建议](https://github.com/GoogleChromeLabs/webpack-libs-optimizations)<sup>[2]</sup>可以帮助你减小 bundle 的体积。
+导致打包体积过多的大部分问题都是来自于引入了不合适的包，对于如何优化依赖包的引入，这里有一些[建议](https://github.com/GoogleChromeLabs/webpack-libs-optimizations)<sup>[9]</sup>可以帮助你减小 bundle 的体积。
 
 ## 3. 解析与执行
 
@@ -140,7 +140,7 @@ Webpack 现在已经成为很多应用的构建工具，因此这里单独将其
 
 例如在上图中，可看到帧率下降明显的地方出现了 Long Task，伴随着的，是有一段超过 700 ms 的脚本执行时间。而性能指标 FCP 与 DCL 处于其后，一定程度上可以怀疑，这个 Long Task 阻塞了主线程并拖慢了页面的交互时间，严重影响了前端性能与体验。
 
-想要了解更多关于 Long Task 的内容，可以[看这里](https://w3c.github.io/longtasks/)<sup>[1]</sup>。
+想要了解更多关于 Long Task 的内容，可以[看这里](https://w3c.github.io/longtasks/)<sup>[10]</sup>。
 
 ### 3.3. 是否真的需要框架？
 
@@ -148,9 +148,9 @@ Webpack 现在已经成为很多应用的构建工具，因此这里单独将其
 
 但是我们可以换个角度来思考这个问题。类库/框架帮我们解决的问题是如何写好代码，很多时候，类库/框架的开发者是需要在可维护性、易用性和性能上做取舍的。对于一个复杂的整站应用，使用框架给你的既定的编程范式将会在各个层面提升你工作的产出。但是，对于某些页面，我们是否可以反其道行之呢？
 
-例如产品经理反馈，咱们的落地页加载太慢了，用户容易流失。这时候你会开始优化性能，当然，你可以用上这次「性能之旅」里了解的各种措施。但你有没有考虑过，对于一些落地页，其实基本就是静态页（或者再加个轮播图）。你是用了 React 技术栈 —— 你加载了 React、Redux、React-Redux、你的一堆 Reducers…… 好吧，整个 JavaScript 可能快 1MB 了。更可怕的是，这个页面可能是用于拉新的，这也代表着访问者并没有缓存可以用。好吧，为了一个静态页和轮播图，用户付出了高额的成本，而原本这只需要 50 行不到的代码。关于这部分的实践，[Netflix 有一篇相关文章](https://medium.com/dev-channel/a-netflix-web-performance-case-study-c0bcde26a9d9)<sup>[1]</sup>。
+例如产品经理反馈，咱们的落地页加载太慢了，用户容易流失。这时候你会开始优化性能，当然，你可以用上这次「性能之旅」里了解的各种措施。但你有没有考虑过，对于一些落地页，其实基本就是静态页（或者再加个轮播图）。你是用了 React 技术栈 —— 你加载了 React、Redux、React-Redux、你的一堆 Reducers…… 好吧，整个 JavaScript 可能快 1MB 了。更可怕的是，这个页面可能是用于拉新的，这也代表着访问者并没有缓存可以用。好吧，为了一个静态页和轮播图，用户付出了高额的成本，而原本这只需要 50 行不到的代码。关于这部分的实践，[Netflix 有一篇相关文章](https://medium.com/dev-channel/a-netflix-web-performance-case-study-c0bcde26a9d9)<sup>[11]</sup>。
 
-最后，我决不是说不要使用框架/类库，它们很有价值，但我只是希望大家不要拘泥于某个思维定式。
+当然，并不是说不要使用框架/类库，它们很有价值，但我只是希望大家不要拘泥于某个思维定式。
 
 ### 3.4. 针对代码的优化
 
@@ -172,7 +172,7 @@ JavaScript 部分的缓存与我们在第一节里提到的缓存基本一致，
 
 一般会有一套配合的方式：首先文件名会包含文件内容的 Hash，内容修改后，文件名就会变化；同时，设置不对页面进行强缓存，这样对于内容更新的资源由于 URI 变了，肯定不会再走缓存，而没有变动的资源则仍然可以使用缓存。
 
-上面说的主要涉及前端资源的发布和部署，详细可以看[这篇内容](https://www.zhihu.com/question/20790576/answer/32602154)，这里就不展开了。
+上面说的主要涉及前端资源的发布和部署，详细可以看[这篇内容](https://www.zhihu.com/question/20790576/answer/32602154)<sup>[12]</sup>，这里就不展开了。
 
 ---
 
@@ -186,10 +186,18 @@ JavaScript 部分的缓存与我们在第一节里提到的缓存基本一致，
 
 1. [Proposal Dynamic Import](https://github.com/tc39/proposal-dynamic-import)
 1. [在 react-router4 中进行代码拆分](https://www.jianshu.com/p/547aa7b92d8c)
+1. [Module ngx_http_gzip_module](http://nginx.org/en/docs/http/ngx_http_gzip_module.html)
+1. [Tree Shaking - Webpack](https://webpack.js.org/guides/tree-shaking/)
+1. [Tree Shaking 性能优化实践 - 原理篇](https://juejin.im/post/5a4dc842518825698e7279a9)
+1. [Tree Shaking for Lodash](https://www.zhihu.com/question/333421533/answer/764963886)
+1. [CSS and JS code coverage - Chrome Dev Tools](https://developers.google.com/web/updates/2017/04/devtools-release-notes#coverage)
+1. [Chrome Dev Summit 2018](https://youtu.be/reztLS3vomE?t=1254)
+1. [Optimize your libraries with webpack](https://github.com/GoogleChromeLabs/webpack-libs-optimizations)
+1. [Long Tasks API 1](https://w3c.github.io/longtasks/)
+1. [A Netflix Web Performance Case Study](https://medium.com/dev-channel/a-netflix-web-performance-case-study-c0bcde26a9d9)
+1. [大公司里怎样开发和部署前端代码？](https://www.zhihu.com/question/20790576/answer/32602154)
 1. [The cost of JavaScript in 2019](https://v8.dev/blog/cost-of-javascript-2019)
 1. [文本压缩算法的对比和选择](https://www.cnblogs.com/zhuxian8/p/7197356.html)
 1. [Text Compression](https://www.sciencedirect.com/topics/computer-science/text-compression)
 1. [Better tree shaking with deep scope analysis](https://medium.com/webpack/better-tree-shaking-with-deep-scope-analysis-a0b788c0ce77)
-1. [Optimize your libraries with webpack](https://github.com/GoogleChromeLabs/webpack-libs-optimizations)
-1. [A Netflix Web Performance Case Study](https://medium.com/dev-channel/a-netflix-web-performance-case-study-c0bcde26a9d9)
 1. [How we reduced our initial JS/CSS size by 67%](https://dev.to/goenning/how-we-reduced-our-initial-jscss-size-by-67-3ac0)
