@@ -168,11 +168,86 @@ Webpack 现在已经成为很多应用的构建工具，因此这里单独将其
 
 JavaScript 部分的缓存与我们在第一节里提到的缓存基本一致，如果你记不太清了，[可以回去再重新看一下](../1-cache/README.md)。
 
+### 4.1. 发布与部署
+
 这里简单提一下：大多数情况下，我们对于 JavaScript 与 CSS 这样的静态资源，都会启动 HTTP 缓存。当然，可能是使用强缓存，也有可能是使用协商缓存。那么，如果我们使用强缓存的时候，如何让浏览器弃用缓存，而请求新的资源呢？
 
 一般会有一套配合的方式：首先文件名会包含文件内容的 Hash，内容修改后，文件名就会变化；同时，设置不对页面进行强缓存，这样对于内容更新的资源由于 URI 变了，肯定不会再走缓存，而没有变动的资源则仍然可以使用缓存。
 
 上面说的主要涉及前端资源的发布和部署，详细可以看[这篇内容](https://www.zhihu.com/question/20790576/answer/32602154)<sup>[12]</sup>，这里就不展开了。
+
+### 4.2. 将基础库代码打包合并
+
+为了更好利用缓存，我们一般会把不容易变化的部分单独抽取出来。例如一个 React 技术栈的项目，可能会将 React、Redux、React-Router 之类的基础库单独打包出一个文件。
+
+这样做的优点就是，当业务代码变动（一般是较为经常的），那么由于基础库也被打包在一起了，所以整个缓存都会失效，基础框架/库，或者是你自己项目中的 common、util部分又会被重新加载一次（即使你从不会去升级它们）。而整套基础框架/库、工具库一般都不小。这就可能使得每次发布都会让用户花费不必要的带宽。
+
+所以一种常见的策略就是[将基础库这种 Cache 周期较长的内容单独打包在一起](https://juejin.im/post/5aed037b6fb9a07aa047e1e1)，利用缓存减少新版本发布后用户的访问速度。
+
+Webpack 在 v3 以及 v3 之前，可以通过 CommonChunkPlugin 来分离一些公共库。而升级到 v4 之后有了一个新的配置项 `optimization.splitChunks`:
+
+```JavaScript
+// webpack.config.js
+module.exports = {
+    //...
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+            minChunks: 1,
+            cacheGroups: {
+                commons: {
+                    minChunks: 1,
+                    automaticNamePrefix: 'commons',
+                    test: /[\\/]node_modules[\\/]react|redux|react-redux/,
+                    chunks: 'all'
+                }
+            }
+        }
+    },
+}
+```
+
+### 4.3. 减少 Webpack 编译不当带来的缓存失效
+
+我们知道，对于每个模块 Webpack 都会分配一个唯一的模块 ID，一般情况下 Webpack 会使用自增 ID。这就可能导致一个问题：一些模块虽然它们的代码没有变化，但由于添加了新的其他模块，导致后续所有的模块 ID 都变更了，文件 MD5 也就变化了。另一个问题是在于，Webpack 的入口文件除了包含它的 runtime、业务模块代码，同时还有一个异步加载的小型 manifest，任何一个模块的变化，最后必然会传导到入口文件。这些都会使得网站发布后，没有改动的源码的资源也会缓存失效。
+
+规避这些问题有一些常用的方式。
+
+**1) 使用 Hash 来替代自增 ID：**
+
+你可以使用 [HashedModuleIdsPlugin 插件](https://webpack.js.org/plugins/hashed-module-ids-plugin/)，它会根据模块的相对路径来计算 Hash 值。当然，你也可以使用 Webpack 提供的 [`optimization.moduleIds`](https://webpack.js.org/configuration/optimization/#optimizationmoduleids)，将其设置为 `hash`，或者选择你需要的方式。
+
+**2) 将 runtime chunk 单独拆分出来：**
+
+通过 [`optimization.runtimeChunk` 配置](https://webpack.js.org/configuration/optimization/#optimizationruntimechunk)可以让 Webpack 把包含 manifest 的 runtime 部分单独分离出来，这样就可以尽可能限制变动影响的文件范围。
+
+```JavaScript
+// webpack.config.js
+module.exports = {
+    //...
+    optimization: {
+        runtimeChunk: {
+            name: 'runtime'
+        }
+    },
+}
+```
+
+> 如果你对 Webpack 模块化 runtime 运行的原理不太了解，可以看看[这篇文章](https://juejin.im/post/5b82ac82f265da431d0e6d25)<sup>[13]</sup>。
+
+**3) 使用 records：**
+
+你可以通过 [`recordsPath` 配置](https://webpack.js.org/configuration/other-options/#recordspath)来让 Webpack 产出一个包含模块信息记录的 JSON 文件，其中包含了一些模块标识的信息，可以用于之后的编译。这样在后续的打包编译时，对于被拆分出来的 Bundle，Webpack 就可以根据 records 中的信息来尽可能不破坏缓存。
+
+```JavaScript
+// webpack.config.js
+module.exports = {
+  //...
+  recordsPath: path.join(__dirname, 'records.json')
+};
+```
+
+如果对上述尽量避免或减少缓存失效的方法感兴趣，也可以在读一读[这篇文章](https://survivejs.com/webpack/optimizing/separating-manifest/#using-records)<sup>14</sup>。
 
 ---
 
@@ -196,8 +271,13 @@ JavaScript 部分的缓存与我们在第一节里提到的缓存基本一致，
 1. [Long Tasks API 1](https://w3c.github.io/longtasks/)
 1. [A Netflix Web Performance Case Study](https://medium.com/dev-channel/a-netflix-web-performance-case-study-c0bcde26a9d9)
 1. [大公司里怎样开发和部署前端代码？](https://www.zhihu.com/question/20790576/answer/32602154)
+1. [webpack进阶：前端运行时的模块化设计与实现](https://juejin.im/post/5b82ac82f265da431d0e6d25)
+1. [Separating a Manifest](https://survivejs.com/webpack/optimizing/separating-manifest/#using-records)
 1. [The cost of JavaScript in 2019](https://v8.dev/blog/cost-of-javascript-2019)
+1. [[译] 2019 年的 JavaScript 性能](https://juejin.im/post/5d1f27285188252f275fdbb6)
+1. [webpack 4: Code Splitting, chunk graph and the splitChunks optimization](https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366)
 1. [文本压缩算法的对比和选择](https://www.cnblogs.com/zhuxian8/p/7197356.html)
+1. [简单聊聊 GZIP 的压缩原理与日常应用](https://zhuanlan.zhihu.com/p/42418273)
 1. [Text Compression](https://www.sciencedirect.com/topics/computer-science/text-compression)
 1. [Better tree shaking with deep scope analysis](https://medium.com/webpack/better-tree-shaking-with-deep-scope-analysis-a0b788c0ce77)
 1. [How we reduced our initial JS/CSS size by 67%](https://dev.to/goenning/how-we-reduced-our-initial-jscss-size-by-67-3ac0)
