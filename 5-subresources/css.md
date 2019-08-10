@@ -239,6 +239,10 @@ module.exports = {
 
 相较于 JavaScript，用户对 CSS 的可控性可能会稍弱一些，所以，基础的优化点也许没有那么多。但随着 CSS 特性（例如 [Houdini/CSS Paint API](https://codersblock.com/blog/say-hello-to-houdini-and-the-css-paint-api/)）的不断发展，相信在其能力提升的同时，也会有更多我们需要关注的优化点。
 
+下面会介绍一些关于图片的性能优化。
+
+[下一站 - 图片 🔜](./image.md)
+
 ---
 
 1. [Everything you need to know about skeleton screens](https://uxdesign.cc/what-you-should-know-about-skeleton-screens-a820c45a571a)
