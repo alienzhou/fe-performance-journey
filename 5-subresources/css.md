@@ -142,10 +142,6 @@ CSS 同样可以进行压缩，与 JavaScript 类似，也有相应的 CSS uglif
 
 ## 4. 解析与渲染树构建
 
-https://www.sitepoint.com/optimizing-css-performance/
-
-https://blog.nextzy.me/how-to-write-css-for-a-great-performance-web-application-edf75bb8a8cc
-
 ### 4.1. 简化选择器
 
 在[《浏览器的工作原理：新式网络浏览器幕后揭秘》](https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/)一文中，作者介绍了样式计算的原理。虽然文章发布时间比较早了，但其中部分内容还是具有参考价值的。
