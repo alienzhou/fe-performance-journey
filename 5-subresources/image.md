@@ -185,6 +185,8 @@ window.addEventListener('orientationchange', lazy);
 
 ---
 
+## 参考资料
+
 1. [HTTP Archive: Page Weight Report](https://httparchive.org/reports/page-weight?view=grid)
 1. [State of the Web: Top Image Optimization Strategies](https://dougsillars.com/2018/05/21/state-of-the-web-top-image-optimization-strategies/)
 1. [CSS Sprites: What They Are, Why They’re Cool, and How To Use Them](https://css-tricks.com/css-sprites/)

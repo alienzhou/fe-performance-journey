@@ -44,7 +44,7 @@ BFF 非常合适做的一件事就是服务聚合。
 
 ---
 
-## 拓展阅读
+## 参考资料
 
 1. [你不知道的 Node.js 性能优化](https://www.yuque.com/office/yuque/0/2019/pdf/168578/1547529466557-357032b6-12fb-4e02-9682-076f498c1f42.pdf)
 1. [Keeping Node.js Fast: Tools, Techniques, And Tips For Making High-Performance Node.js Servers](https://www.smashingmagazine.com/2018/06/nodejs-tools-techniques-performance-servers/?utm_source=mybridge&utm_medium=blog&utm_campaign=read_more)

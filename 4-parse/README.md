@@ -82,7 +82,7 @@ HTML 解析为 DOM Tree，CSS 解析为 CSSOM，两者再合成 Render Tree，�
 
 ---
 
-## 拓展阅读
+## 参考资料
 
 1. [Deciphering the Critical Rendering Path](https://calendar.perfplanet.com/2012/deciphering-the-critical-rendering-path/)
 1. [HTML5 spec: current-document-readiness](https://html.spec.whatwg.org/multipage/dom.html#current-document-readiness)

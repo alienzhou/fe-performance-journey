@@ -101,7 +101,7 @@ DNS Prefetch 就是浏览器提供给我们的一个 API。它是 Resource Hint 
 
 ---
 
-## 扩展阅读
+## 参考资料
 
 1. [DNS 的解析过程](https://www.zhihu.com/question/23042131)
 1. [CDN 之我见：原理篇](https://yq.aliyun.com/articles/577708)

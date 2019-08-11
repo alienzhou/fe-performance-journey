@@ -259,7 +259,7 @@ module.exports = {
 
 ---
 
-## 拓展阅读
+## 参考资料
 
 1. [Proposal Dynamic Import](https://github.com/tc39/proposal-dynamic-import)
 1. [在 react-router4 中进行代码拆分](https://www.jianshu.com/p/547aa7b92d8c)

@@ -241,6 +241,8 @@ module.exports = {
 
 ---
 
+## 参考资料
+
 1. [Everything you need to know about skeleton screens](https://uxdesign.cc/what-you-should-know-about-skeleton-screens-a820c45a571a)
 1. [Building Skeleton Screens with CSS Custom Properties](https://css-tricks.com/building-skeleton-screens-css-custom-properties/)
 1. [自动化生成 H5 骨架页面](https://zhuanlan.zhihu.com/p/34702561)
