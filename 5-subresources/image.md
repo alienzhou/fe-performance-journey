@@ -1,5 +1,7 @@
 # 图片
 
+[🔝 页面静态资源](./README.md) | [🔙 上一站 - CSS](../5-subresources/css.md)
+
 优质的图片可以有效吸引用户，给用户良好的体验，所以随着互联网的发展，越来越多的产品开始使用图片来提升产品体验。而相较于页面其他元素，图片的体积不容忽视。对于很多网站应用来说，图片所占的流量可能会超过 50%。下图是截止 2019 年 6 月 [HTTP Archive](https://httparchive.org/reports/page-weight?view=grid)<sup>[1]</sup> 上统计的网站上各类资源加载的体积：
 
 ![overall](./img/overall.png)
@@ -119,7 +121,7 @@ window.addEventListener('orientationchange', lazy);
 
 **3) 使用 video 替代 GIF：**
 
-在[兼容性允许](https://caniuse.com/#feat=video)的情况下考虑，可以在想要动图效果时使用视频，即使用静音（muted）的 video 来代替 GIF。相同的效果下，使用视频会比 GIF 体积要更小。[Smashing Magazine 上有篇文章](https://www.smashingmagazine.com/2018/11/gif-to-video/)<sup>[9]</sup>详细介绍使用方式。
+在[兼容性允许](https://caniuse.com/#feat=video)的情况下考虑，可以在想要动图效果时使用视频，即使用静音（muted）的 video 来代替 GIF。相同的效果下，[GIF 比视频（MPEG-4）大 5～20 倍](https://youtu.be/reztLS3vomE?t=158)。[Smashing Magazine 上有篇文章](https://www.smashingmagazine.com/2018/11/gif-to-video/)<sup>[9]</sup>详细介绍使用方式。
 
 **4) 渐进式 JPEG：**
 
