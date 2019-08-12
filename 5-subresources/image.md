@@ -207,3 +207,4 @@ window.addEventListener('orientationchange', lazy);
 1. [Automating image optimization](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/automating-image-optimization/)
 1. [Lazy loading images using Intersection Observer](http://deanhume.com/lazy-loading-images-using-intersection-observer/)
 1. [Trust is Good, Observation is Better—Intersection Observer v2](https://developers.google.com/web/updates/2019/02/intersectionobserver-v2)
+1. [Image policies for fast load times and more](https://web.dev/image-policies/)
