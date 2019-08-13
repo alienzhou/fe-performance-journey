@@ -65,4 +65,4 @@
 1. [17 Things People Absolutely Hate About Your Website](https://blog.hubspot.com/blog/tabid/6307/bid/32307/15-things-people-absolutely-hate-about-your-website.aspx)
 1. [Why Performance Matters](https://developers.google.com/web/fundamentals/performance/why-performance-matters/)
 
-> 除注明外，本仓库内所有文章均采用 [Creative Commons BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh) 协议发布（自由转载-保持署名-非商用-禁止演绎）。
+> 除注明外，本仓库内文章均采用 [Creative Commons BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh) 协议（自由转载-保持署名-非商用-禁止演绎）。
