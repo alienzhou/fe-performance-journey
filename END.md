@@ -101,4 +101,8 @@ Web 发展到现今阶段，性能指标已经不再只是 `DOMContentLoad` 和 
 1. [构建时预渲染：网页首帧优化实践](https://tech.meituan.com/2018/11/15/first-contentful-paint-practice.html)
 1. [Measure Performance with the RAIL Model](https://developers.google.com/web/fundamentals/performance/rail#goals-and-guidelines)
 
-> 除注明外，本仓库内文章均采用 [Creative Commons BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh) 协议（自由转载-保持署名-非商用-禁止演绎）。
+---
+
+除注明外，本仓库内文章均采用 [Creative Commons BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh) 协议。
+
+![license](./img/license.jpg)
