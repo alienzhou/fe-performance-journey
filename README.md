@@ -61,7 +61,7 @@
 1. [Driving user growth with performance improvements](https://medium.com/@Pinterest_Engineering/driving-user-growth-with-performance-improvements-cfc50dafadd7)
 1. [How Fast Should A Website Load in 2019?](https://www.hobo-web.co.uk/your-website-design-should-load-in-4-seconds/)
 1. [How long will you wait for a shopping website to load?](https://www.bbc.com/news/business-37100091)
-1. [雅虎 35 条性能优化规则](https://github.com/creeperyang/blog/issues/1)
+1. [Best Practices for Speeding Up Your Web Site (Yahoo)](https://github.com/creeperyang/blog/issues/1)
 1. [17 Things People Absolutely Hate About Your Website](https://blog.hubspot.com/blog/tabid/6307/bid/32307/15-things-people-absolutely-hate-about-your-website.aspx)
 1. [Why Performance Matters](https://developers.google.com/web/fundamentals/performance/why-performance-matters/)
 
