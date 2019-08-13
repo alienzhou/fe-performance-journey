@@ -1,5 +1,9 @@
 # 运行时
 
+[🔙 上一站 - 页面静态资源](../5-subresources/README.md)
+
+虽然我们已经趟过了资源加载相关的优化大头，但仍然不能掉以轻心，在应用运行时你仍然可能踩到一些性能的“坑”，下面就让我们来具体看一看。
+
 ## 1. 注意强制同步布局
 
 **1) 什么是 reflow/layout：**
@@ -189,9 +193,9 @@ window.requestIdleCallback(function () {
 
 > 我们在这两部分都提及了 `requestIdleCallback`，它确实是个非常不错的 API，然而目前（2019.08）[兼容性却不太好](https://caniuse.com/#feat=requestidlecallback)。如果你希望在生产环境中使用，建议使用 [polyfill](https://github.com/aFarkas/requestIdleCallback)。
 
-### 3.3. Web Worker
+### 3.3. 并行计算
 
-对于一些 CPU 密集型的计算场景，除了在主 JavaScript 线程中拆分调度任务外，我们还可以考虑将将其计算过程放在 [Web Worker](https://www.html5rocks.com/en/tutorials/workers/basics/)<sup>[8]</sup> 中。在 Web Worker 之前你能做的只是将任务异步化（asynchronously），而有了 Web Worker，你可以并行（concurrency）地执行 JavaScript。
+对于一些 CPU 密集型的计算场景，除了在主 JavaScript 线程中拆分调度任务外，我们还可以考虑计算与主线程并行，在浏览器中启用并行线程可以使用 [Web Worker](https://www.html5rocks.com/en/tutorials/workers/basics/)<sup>[8]</sup> 中。在 Web Worker 之前你能做的只是将任务异步化（asynchronously），而有了 Web Worker，你可以并行（concurrency）地执行 JavaScript。
 
 ```JavaScript
 // index.js
@@ -258,7 +262,7 @@ https://fed.taobao.org/blog/2016/04/26/performance-composite/
 
 但同时，也要注意避免层爆炸，防止在无法进行层压缩的情况下出现过多的层，反而导致性能的下降。[这篇文章](https://fed.taobao.org/blog/2016/04/26/performance-composite/)<sup>[9]</sup>详细介绍了 composite 相关的系列内容。
 
-## 5. 注意滚动的性能问题
+## 5. 滚动事件的性能优化
 
 前端最容以碰到的一个性能场景就是监听滚动事件并进行相应的操作。由于滚动事件发生会非常频繁（相较于用户点击、hover 等事件），所以频繁地执行监听回调就容易造成 JavaScript 执行与页面渲染之间互相阻塞正常执行的情况。
 
