@@ -58,6 +58,8 @@
 
 ![overall](./img/overall.svg)
 
+[>> 去站点阅读 >>](https://alienzhou.github.io/fe-performance-journey/)
+
 ## 参考资料
 
 1. [Driving user growth with performance improvements](https://medium.com/@Pinterest_Engineering/driving-user-growth-with-performance-improvements-cfc50dafadd7)
