@@ -38,6 +38,8 @@ async function readListData() {
 
 当你访问一个页面及其子资源时，有时候会出现一个资源被使用多次，例如图标。由于该资源已经存储在内存中，再去请求反而多此一举，浏览器内存则是最近、最快的响应场所。
 
+![memory cache](./img/memcache.png)
+
 内存缓存并无明确的标准规定，它与 HTTP 语义下的缓存关联性不大，算是浏览器帮我们实现的优化，很多时候其实我们意识不到。
 
 对内存缓存感兴趣，可以在[这篇文章](https://calendar.perfplanet.com/2016/a-tale-of-four-caches/)<sup>[2]</sup>的 Memory Cache 部分进一步了解。
