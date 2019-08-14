@@ -39,7 +39,7 @@ module.exports = {
             '/3-response/',
             '/4-parse/',
             {
-                title: '页面静态资源',
+                title: '五、页面静态资源',
                 path: '/5-subresources/',
                 collapsable: false,
                 sidebarDepth: 1,

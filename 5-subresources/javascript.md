@@ -10,7 +10,7 @@
 
 ### 1.1. 代码拆分（code split）与按需加载
 
-相信熟练使用 Webpack 的同学对这一特性都不陌生。
+相信熟练使用 webpack 的同学对这一特性都不陌生。
 
 虽然整体应用的代码非常多，但是很多时候，我们在访问一个页面时，并不需要把其他页面的组件也全部加载过来，完全可以等到访问其他页面时，再按需去动态加载。核心思路如下所示：
 
@@ -64,7 +64,7 @@ gzip_types      application/javascript application/x-javascript text/javascript;
 
 ### 2.2. Tree Shaking
 
-Tree Shaking 最早进入到前端的视线主要是因为 Rollup。后来在 Webpack 中也被实现了。其本质是通过检测源码中不会被使用到的部分，将其删除，从而减小代码的体积。例如：
+Tree Shaking 最早进入到前端的视线主要是因为 Rollup。后来在 webpack 中也被实现了。其本质是通过检测源码中不会被使用到的部分，将其删除，从而减小代码的体积。例如：
 
 ```JavaScript
 // 模块 A
@@ -89,7 +89,7 @@ console.log(add(1, 2));
 
 注意，刚才说了 Tree Shaking 非常依赖于 ESM。像是前端流行的工具库 [lodash](https://lodash.com/) 一般直接安装的版本是非 ESM 的，为了支持 Tree Shaking，我们需要去安装它的 ESM 版本 —— [lodash-es](https://www.npmjs.com/package/lodash-es) 来[实现 Tree Shaking](https://www.zhihu.com/question/333421533/answer/764963886)<sup>[6]</sup>。
 
-此外，Chrome Dev Tools 也可以帮助你查看加载的 [JavaScript 代码的使用覆盖率](https://developers.google.com/web/updates/2017/04/devtools-release-notes#coverage)<sup>[7]</sup>。
+此外，Chrome DevTools 也可以帮助你查看加载的 [JavaScript 代码的使用覆盖率](https://developers.google.com/web/updates/2017/04/devtools-release-notes#coverage)<sup>[7]</sup>。
 
 ### 2.3. 优化 polyfill 的使用
 
@@ -280,10 +280,10 @@ module.exports = {
 1. [Proposal Dynamic Import](https://github.com/tc39/proposal-dynamic-import)
 1. [在 react-router4 中进行代码拆分](https://www.jianshu.com/p/547aa7b92d8c)
 1. [Module ngx_http_gzip_module](http://nginx.org/en/docs/http/ngx_http_gzip_module.html)
-1. [Tree Shaking - Webpack](https://webpack.js.org/guides/tree-shaking/)
+1. [Tree Shaking - webpack](https://webpack.js.org/guides/tree-shaking/)
 1. [Tree Shaking 性能优化实践 - 原理篇](https://juejin.im/post/5a4dc842518825698e7279a9)
 1. [Tree Shaking for Lodash](https://www.zhihu.com/question/333421533/answer/764963886)
-1. [CSS and JS code coverage - Chrome Dev Tools](https://developers.google.com/web/updates/2017/04/devtools-release-notes#coverage)
+1. [CSS and JS code coverage - Chrome DevTools](https://developers.google.com/web/updates/2017/04/devtools-release-notes#coverage)
 1. [Chrome Dev Summit 2018](https://youtu.be/reztLS3vomE?t=1254)
 1. [Optimize your libraries with webpack](https://github.com/GoogleChromeLabs/webpack-libs-optimizations)
 1. [Long Tasks API 1](https://w3c.github.io/longtasks/)

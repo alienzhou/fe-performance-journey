@@ -1,4 +1,4 @@
-# 运行时
+# 六、运行时
 
 [🔙 上一站 - 页面静态资源](../5-subresources/README.md)
 
@@ -140,7 +140,7 @@ Virtual List 在 feed 流、图片库等很多场景下非常有用，开源组�
 
 想了解更多关于 Virtual Scroller 的信息可以[看这里](https://github.com/WICG/virtual-scroller)<sup>[5]</sup>。
 
-## 3. 避免 JavaScript 运行的占用时间过长
+## 3. 避免 JavaScript 运行时间过长
 
 上面我们提到了，屏幕的刷新频率决定了每帧之间留给 JavaScript 执行的时间“并不多”。也正是由于渲染线程和 JavaScript 线程之间互斥，所以 JavaScript 执行占用时间过长会导致无法及时渲染，即出现所谓的“掉帧”。下面我们来看下如何避免 JavaScript 长时间执行而导致的掉帧。
 
