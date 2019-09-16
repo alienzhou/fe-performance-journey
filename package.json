@@ -33,7 +33,6 @@
     "@vuepress/plugin-back-to-top": "^1.0.0-alpha.44",
     "@vuepress/plugin-last-updated": "^1.0.3",
     "@vuepress/plugin-nprogress": "^1.0.0-rc.1",
-    "vuepress": "^1.0.3",
-    "vuepress-plugin-baidu-google-analytics": "^1.0.0"
+    "vuepress": "^1.0.3"
   }
 }

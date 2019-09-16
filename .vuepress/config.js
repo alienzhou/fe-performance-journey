@@ -1,4 +1,5 @@
-const BASE = '/fe-performance-journey/'
+const path = require('path');
+const BASE = '/fe-performance-journey/';
 
 module.exports = {
     base: '/fe-performance-journey/',
@@ -61,11 +62,13 @@ module.exports = {
         '@vuepress/last-updated',
         '@vuepress/back-to-top',
         '@vuepress/active-header-links',
-        'vuepress-plugin-baidu-google-analytics',
-        {
-            hm: '0cbe709b2d0700e40a995aeb6f42796b',
-            ga: 'UA-122643173-2',
-            ignore_hash: false
-        }
+        [
+            require.resolve(path.resolve(__dirname, 'plugin', 'baidu-google-analytics')),
+            {
+                hm: '0cbe709b2d0700e40a995aeb6f42796b',
+                ga: 'UA-122643173-2',
+                ignore_hash: false
+            }
+        ]
     ]
 };
