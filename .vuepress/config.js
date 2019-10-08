@@ -3,7 +3,7 @@ const BASE = '/fe-performance-journey/';
 
 module.exports = {
     base: '/fe-performance-journey/',
-    title: '🚵 前端性能优化之旅 🚀',
+    title: '前端性能优化',
     description: '从用户发起访问开始到离开网站应用结束，'
         + '完整地介绍其间前端性能优化的关注点与技术手段，'
         + '帮助大家体系化得了解与学习前端性能优化相关知识',
@@ -13,6 +13,13 @@ module.exports = {
             {
                 rel: 'icon',
                 href: 'https://raw.githubusercontent.com/alienzhou/alienzhou.github.io/master/img/fe-performance-journey/favicon.png'
+            }
+        ],
+        [
+            'meta',
+            {
+                name: 'keywords',
+                content: '前端,性能优化,体验,性能,优化,网站'
             }
         ]
     ],
