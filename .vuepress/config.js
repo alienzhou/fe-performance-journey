@@ -2,7 +2,7 @@ const path = require('path');
 const BASE = '/fe-performance-journey/';
 
 module.exports = {
-    base: '/fe-performance-journey/',
+    base: '/projects/fe-performance-journey/',
     title: '前端性能优化',
     description: '从用户发起访问开始到离开网站应用结束，'
         + '完整地介绍其间前端性能优化的关注点与技术手段，'
