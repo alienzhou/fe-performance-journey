@@ -56,7 +56,7 @@ WebM(VP9) 相较于 MPEG-4(x264) 来说会更小，不过[兼容性相对来说�
 
 关于视频的优化这里只介绍了一些基本的手段，但对于一个重度的视频网站来说，会包含例如播放器 SDK 的优化、数据预取、码率自适应等更多的优化内容，在 2019 GMTC 上，[B站分享了他们的缩减首帧耗时的一系列优化措施](https://static001.geekbang.org/con/42/pdf/3841774823/file/%E8%B0%AD%E5%85%86%E6%AD%86&mdash;GMTC%20B%E7%AB%99%E7%9A%84%E8%A7%86%E9%A2%91%E4%BD%93%E9%AA%8C%E8%BF%9B%E5%8C%96%E4%B9%8B%E8%B7%AF%20-%20bilibili%20.pdf)<sup>[4]</sup>。所以这里算是一个抛砖引玉。
 
-此外，虽然上面介绍了一些视频处理的软件工具，但是如果有更高的定制化或集成需求，建议使用 [FFmpeg](https://www.ffmpeg.org/)<sup>[5]</sup> 或其[背后的这些包](https://github.com/FFmpeg/FFmpeg#libraries)。
+此外，虽然上面介绍了一些视频处理的软件工具，但是如果有更高的定制化或集成需求，建议使用 [FFmpeg](https://www.ffmpeg.org/)<sup>[5]</sup> 或[相关的库](https://github.com/FFmpeg/FFmpeg#libraries)来处理。
 
 [🔝 页面静态资源](./README.md#本节告一段落)
 
