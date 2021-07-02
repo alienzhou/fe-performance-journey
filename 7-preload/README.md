@@ -18,7 +18,7 @@
 
 #### 1.1.1. Prefetch
 
-你可以把 Prefetch 理解为资源预获取。一般来说，可以用 Prefetch 来指定在紧接着之后的操作或浏览中需要使用到的资源，让浏览器提前获取。由于仅仅是提前获取资源，因此浏览器不会对资源进行预处理，并且像 CSS 样式表、JavaScript 脚本这样的资源是不会自动执行并应用于当前文档的。其中 `as` 属性用于指定资源的类型，与 Preload 规范一致，[基本涵盖了所有资源类型](https://www.w3.org/TR/preload/#as-attribute)<sup>[2]</sup>。
+你可以把 Prefetch 理解为资源预获取。一般来说，可以用 Prefetch 来指定在紧接着之后的操作或浏览中需要使用到的资源，让浏览器提前获取。由于仅仅是提前获取资源，因此浏览器不会对资源进行预处理，并且像 CSS 样式表、JavaScript 脚本这样的资源是不会自动执行并应用于当前文档的。与Preload 规范基本一致，[基本涵盖了所有资源类型](https://www.w3.org/TR/preload/#as-attribute)<sup>[2]</sup>。
 
 ```HTML
 <link rel="prefetch" href="/prefetch.js" as="script">
